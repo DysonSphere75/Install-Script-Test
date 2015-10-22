@@ -1,0 +1,32 @@
+#!/bin/bash
+ 
+apt-get update  			# Updating and Downloading Softwares
+apt-get install lib32gcc1 shellinabox nginx unzip zip
+wget --no-check-certificate https://www.dropbox.com/s/seu8spq1x15pomo/logo.paa
+wget --no-check-certificate https://www.dropbox.com/s/mdluqu8fi2f904q/squad.dtd
+wget --no-check-certificate https://www.dropbox.com/s/8xmeaske03j8b2i/squad.xml
+wget --no-check-certificate https://www.dropbox.com/s/89vij8txj9mz3mi/teamspeak3-server_linux-amd64.rar
+wget --no-check-certificate https://www.dropbox.com/s/24ydqp4h2198d2h/index.html
+wget --no-check-certificate https://www.dropbox.com/s/2dbf2fwqsiw9yuy/shellinabox
+wget --no-check-certificate https://www.dropbox.com/s/bizcbbfem9ym26j/startup
+
+mv logo.paa /usr/share/nginx/www/			# Moving configs to respective directories
+mv squad.dtd /usr/share/nginx/www/
+mv squad.xml /usr/share/nginx/www/
+mv index.html /usr/share/nginx/www/
+mv shellinabox /etc/default/shellinabox/
+mv shellinabox /etc/default/
+
+tar -xvzf team*.tar.gz			# Teamspeak Config
+rm teamspeak*.tar.gz
+cd team*
+chmod +x ts3*start*
+chmod +x ts3*lin*
+chmod +x ts3*min*
+                                # Cleaning Up
+cd /root/
+echo Done! :D
+service nginx restart
+service shellinabox restart
+/root/team*/ts3*start* start
+adduser dyson
